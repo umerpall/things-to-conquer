@@ -10,7 +10,7 @@ function App() {
 
   useEffect(()=>{
     const getItems = async () => {
-      const todos = await axios.get('https://things-to-conquer.herokuapp.com//items')
+      const todos = await axios.get('https://things-to-conquer.herokuapp.com/items')
       setTodoItems(todos.data);
     }
     getItems();
@@ -18,7 +18,7 @@ function App() {
 
 
   const addItems = async () => {
-    const todos = await axios.post('https://things-to-conquer.herokuapp.com//items',
+    const todos = await axios.post('https://things-to-conquer.herokuapp.com/items',
       {
         item: inputVal
       }
@@ -28,14 +28,14 @@ function App() {
   }
 
   const deleteItem = async(id) => {
-    await axios.delete(`https://things-to-conquer.herokuapp.com//items/${id}`)
+    await axios.delete(`https://things-to-conquer.herokuapp.com/items/${id}`)
     const newListItems = todoItems.filter((todo)=>(todo._id !== id))
     // console.log(newListItems)
     setTodoItems(newListItems)
   }
 
   const updateItem = async() => {
-    await axios.put('https://things-to-conquer.herokuapp.com//items/' + isUpdating, {item:updateItemText})
+    await axios.put('https://things-to-conquer.herokuapp.com/items/' + isUpdating, {item:updateItemText})
     const updatedItemID= todoItems.findIndex((item)=>item._id === isUpdating)
     todoItems[updatedItemID].item = updateItemText
     setIsUpdating('')
